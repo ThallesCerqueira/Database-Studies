@@ -1017,7 +1017,8 @@ insert into funcionarios values (1000,'Howard','showardrr@addtoany.com','Masculi
 /* EXERCÍCIOS */
 select departamento, count(*)
 from funcionarios
-GROUP by departamento;
+GROUP by departamento
+ORDER BY 2;
 
 /* Exercício 1 */
 SELECT NOME, DEPARTAMENTO
@@ -1028,8 +1029,8 @@ DEPARTAMENTO = 'Filmes';
 /* Exercício 2 */
 SELECT NOME, DEPARTAMENTO, EMAIL
 FROM funcionarios
-WHERE DEPARTAMENTO = 'Lar' OR 
-DEPARTAMENTO = 'Filmes';
+WHERE SEXO = 'FEMININO' AND (DEPARTAMENTO = 'Lar' OR 
+DEPARTAMENTO = 'Filmes');
 
 /* EXERCÍCIO 3 */
 SELECT NOME, SEXO
