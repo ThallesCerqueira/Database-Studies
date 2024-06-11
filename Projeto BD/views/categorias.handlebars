@@ -1,0 +1,39 @@
+<h1>{{title}}</h1>
+
+<table class="table table-striped mb-4">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Descrição</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each categorias}}
+      <tr>
+        <td>{{nomeCategoria}}</td>
+        <td>{{descricaoCategoria}}</td>
+        <td>
+          <form method="POST" action="/categorias/delete/{{codCategoria}}" class="mb-0">
+            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<h2>Adicionar Nova Categoria</h2>
+<form method="POST" action="/categorias" class="mb-4">
+  <div class="form-group">
+    <label for="nomeCategoria">Nome:</label>
+    <input type="text" id="nomeCategoria" name="nomeCategoria" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="descricaoCategoria">Descrição:</label>
+    <input type="text" id="descricaoCategoria" name="descricaoCategoria" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Adicionar</button>
+</form>
+
+<a href="/" class="btn btn-secondary">Voltar</a>

@@ -1,0 +1,61 @@
+<h1>{{title}}</h1>
+
+<table class="table table-striped mb-4">
+  <thead>
+    <tr>
+      <th>Descrição</th>
+      <th>Valor</th>
+      <th>Data</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each despesas}}
+      <tr>
+        <td>{{descricaoDespesa}}</td>
+        <td>{{valorDespesa}}</td>
+        <td>{{formatDate dataDespesa}}</td>
+        <td>
+          <form method="POST" action="/despesas/delete/{{codDespesa}}" class="mb-0">
+            <button type="submit" class="btn btn-danger btn-sm">Deletar</button>
+          </form>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<h2>Adicionar Nova Despesa</h2>
+<form method="POST" action="/despesas" class="mb-4">
+  <div class="form-group">
+    <label for="descricaoDespesa">Descrição:</label>
+    <input type="text" id="descricaoDespesa" name="descricaoDespesa" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="valorDespesa">Valor:</label>
+    <input type="number" id="valorDespesa" name="valorDespesa" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="dataDespesa">Data:</label>
+    <input type="date" id="dataDespesa" name="dataDespesa" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label for="codUsuarioFk">Usuário:</label>
+    <select id="codUsuarioFk" name="codUsuarioFk" class="form-control" required>
+      {{#each usuarios}}
+        <option value="{{codUsuario}}">{{nomePessoa}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="codCategoriaFk">Categoria:</label>
+    <select id="codCategoriaFk" name="codCategoriaFk" class="form-control" required>
+      {{#each categorias}}
+        <option value="{{codCategoria}}">{{nomeCategoria}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Adicionar</button>
+</form>
+
+<a href="/" class="btn btn-secondary">Voltar</a>

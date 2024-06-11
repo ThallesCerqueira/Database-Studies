@@ -1,0 +1,20 @@
+{
+  "name": "controledegastos",
+  "version": "1.0.0",
+  "description": "Controle de Gastos com Express, MySQL e Handlebars",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "mysql": "^2.18.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}

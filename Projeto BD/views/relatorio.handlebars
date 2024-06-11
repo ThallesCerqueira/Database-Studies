@@ -1,0 +1,50 @@
+<!-- Criar ou atualizar o arquivo views/relatorio.handlebars -->
+
+<h1>{{title}}</h1>
+
+<form method="GET" action="/relatorio" class="mb-4">
+  <div class="form-group">
+    <label for="usuarioFiltro">Usuário:</label>
+    <select id="usuarioFiltro" name="usuarioFiltro" class="form-control">
+      <option value="">Todos</option>
+      {{#each usuarios}}
+        <option value="{{codUsuario}}">{{nomePessoa}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="categoriaFiltro">Categoria:</label>
+    <select id="categoriaFiltro" name="categoriaFiltro" class="form-control">
+      <option value="">Todas</option>
+      {{#each categorias}}
+        <option value="{{codCategoria}}">{{nomeCategoria}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
+
+<table class="table table-striped mb-4">
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>Categoria</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+      <th>Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each despesas}}
+      <tr>
+        <td>{{nomePessoa}}</td>
+        <td>{{nomeCategoria}}</td>
+        <td>{{descricaoDespesa}}</td>
+        <td>{{valorDespesa}}</td>
+        <td>{{formatDate dataDespesa}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+<a href="/" class="btn btn-secondary">Voltar</a>
