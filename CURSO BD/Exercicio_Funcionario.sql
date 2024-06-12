@@ -1037,3 +1037,8 @@ SELECT NOME, SEXO
 FROM funcionarios
 WHERE SEXO = 'Masculino' OR 
 DEPARTAMENTO = 'Jardim';
+
+/* Filtrando elementos Neutros */
+SELECT NOME, SEXO
+FROM funcionarios
+WHERE EMAIL IS NULL;
