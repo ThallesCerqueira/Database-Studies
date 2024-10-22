@@ -243,3 +243,62 @@ SET @CODIGO = @@IDENTITY
 select @@IDENTITY as Codigo
 
 exec SPD_CARGONOVO_RETORNO 1, 'Programadora'
+
+CREATE TRIGGER tg_ChecaCargo
+ON Cargo
+FOR Insert
+AS
+IF EXISTS(SELECT * FROM INSERTED WHERE CODIGO > 100)
+	Print 'Código inválido!!!'
+ELSE 
+	Print 'Código válido!!!'
+
+
+INSERT INTO CARGO (codigo, nome, simbolo) VALUES
+(131, 'Colecionador', 'R')
+
+select * from CARGO
+
+
+ALTER TRIGGER tg_ChecaCargo
+ON Cargo
+FOR Insert
+AS
+IF EXISTS(SELECT * FROM INSERTED WHERE CODIGO > 100)
+	BEGIN
+	Print 'Código inválido!!!'
+	ROLLBACK
+	END
+ELSE 
+	Print 'Código válido!!!'
+
+
+INSERT INTO CARGO (codigo, nome, simbolo) VALUES
+(132, 'Zelador', 'Z')
+
+SELECT * FROM CARGO
+
+DROP TRIGGER tg_ChegaCargo
+
+
+CREATE TRIGGER tg_ExclusaoCargo
+ON Cargo
+FOR Delete
+AS
+IF EXISTS( SELECT * FROM DELETED WHERE codigo < 100 )
+	Begin
+	Print 'Exclusão cancelada!!!'
+	ROLLBACK
+	End
+
+DELETE FROM CARGO WHERE CODIGO = 15;
+
+CREATE TRIGGER tg_AlteracaoCargo
+ON Cargo
+FOR UPDATE
+AS 
+IF EXISTS(SELECT * FROM INSERTED WHERE simbolo = 'X')
+	Begin
+	Print 'Alteração cancelada'
+	ROLLBACK
+	End
